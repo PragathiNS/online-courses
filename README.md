@@ -10,6 +10,18 @@ Courses that have taught me to improve my Computer Science knowledge
 5. [Android Basics: User Interface](https://classroom.udacity.com/courses/ud834)
 6. [Android Basics: Multiscreen Apps](https://classroom.udacity.com/courses/ud839)
 7. [Android Basics: Data Storage](https://classroom.udacity.com/courses/ud845)
+### Coursera
+#### Python Specialization
+1. [Python Specialization](https://www.coursera.org/specializations/python)
+  1. [Programming for Everybody (Getting Started with Python)](https://www.coursera.org/learn/python/home/welcome) | University of Michigan
+
+1. [Hadoop Platform and Application Framework](https://www.coursera.org/learn/hadoop/home/welcome) | University of California, San Diego
+2. [Basic Statistics](https://www.coursera.org/learn/basic-statistics/home/welcome) | Matthijs Rooduijn, Emiel van Loon |University of Amsterdam
+3. 
+
+#### Academic English Writing
+1. [Grammar and Punctuation](https://www.coursera.org/learn/grammar-punctuation/home/welcome) | Tamy Chapman, Helen Nam | University of California, Irvine
+2. 
 ### Udemy
 1. [Java Design Patterns](https://www.udemy.com/java-design-patterns-tutorial)
 2. [AWS Certified Developer - Associate 2018](https://www.udemy.com/aws-certified-developer-associate)
@@ -20,4 +32,3 @@ Courses that have taught me to improve my Computer Science knowledge
 
 ### EdX
 
-### Coursera
