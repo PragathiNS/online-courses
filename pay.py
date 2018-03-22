@@ -10,6 +10,7 @@ try:
     rate = float(r)
 except:
     print ("Error, please enter numeric values")
+    quit()
 
 if h <= 40:
     total = h * rate
