@@ -10,7 +10,7 @@ rate = float(r)
 
 if h <= 40:
     total = h * rate
-elif h > 40:
+else:
     basic = 40 * rate
     extrahrs = h - 40
     total = basic + (extrahrs * (1.5 * rate))
