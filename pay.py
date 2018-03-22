@@ -4,9 +4,12 @@
 # You should use input to read a string and float() to convert the string to a number. 
 
 hrs = input("Enter Hours:")
-h = float(hrs)
 r = input("Enter rate:")
-rate = float(r)
+try:
+    h = float(hrs)
+    rate = float(r)
+except:
+    print ("Error, please enter numeric values")
 
 if h <= 40:
     total = h * rate
