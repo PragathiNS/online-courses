@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-
 import xml.etree.ElementTree as ET
 import sqlite3
 
@@ -77,4 +70,3 @@ for entry in all:
     VALUES (?,?,?,?,?)''', (name, album_id, length, rating, count))
     
     conn.commit()
-    
