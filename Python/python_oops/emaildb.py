@@ -25,7 +25,7 @@ for line in fh:
         cur.execute('''INSERT INTO COunts (email, count)
         VALUES (?, 1)''', (email,))
     else:
-        cur.execute('UPDATE COunts SET count = count + 1 WHERE email = ?',
+        cur.execute('UPDATE Counts SET count = count + 1 WHERE email = ?',
                 (email,))
     conn.commit()
 
