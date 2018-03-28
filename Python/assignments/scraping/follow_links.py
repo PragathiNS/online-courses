@@ -14,13 +14,12 @@ ctx.verify_mode = ssl.CERT_NONE
 
 url = input('Enter URL: ')
 count = int(input('Enter count: '))
-positon = int(input('Enter positon: ')) - 1
+position = int(input('Enter positon: ')) - 1
 
 while count >= 0:
     html = urllib.request.urlopen(url, context=ctx).read()
     soup = BeautifulSoup(html, 'html.parser')
     print ('Retrieving:', url)
     tags = soup('a')
-    url = tag[position].get('href', None)
+    url = tags[position].get('href', None)
     count = count - 1
-
