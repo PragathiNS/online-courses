@@ -9,8 +9,17 @@ import xml.etree.ElementTree as ET
 url = input('Enter location: ')
 xmldata = urllib.request.urlopen(url).read()
 print ('Retrieving', url)
-
 tree = ET.fromstring(xmldata)
-# what will the datatype of counts be here? List
 counts = tree.findall('.//count')
-print (counts)
+numbers = []
+count = 0
+for c in counts:
+  numbers.append(int(c.text))
+  count = count + 1
+  
+s = 0
+for i in numbers:
+  s = s + i
+  
+print ('Count:', count)
+print ('Sum:', s)
