@@ -24,7 +24,15 @@ def parse_file(datafile):
     name = ""
     data = []
     with open(datafile,'rb') as f:
-        pass
+        # csv.reader returns list of lists
+        first = csv.reader(f,  delimiter=',')
+        for i, val in enumerate(first):
+            if i == 0:
+                name = val[1]
+            elif i > 1:
+                data.append(val)
+            else:
+                continue
     # Do not change the line below
     return (name, data)
 
