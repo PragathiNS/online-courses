@@ -20,8 +20,8 @@ Courses that have taught me to improve my Computer Science knowledge
   1. [Programming for Everybody (Getting Started with Python)](https://www.coursera.org/learn/python/home/welcome) | University of Michigan
 
 1. [Hadoop Platform and Application Framework](https://www.coursera.org/learn/hadoop/home/welcome) | University of California, San Diego
-2. [Basic Statistics](https://www.coursera.org/learn/basic-statistics/home/welcome) | Matthijs Rooduijn, Emiel van Loon |University of Amsterdam
-3. 
+2. [Basic Statistics](https://www.coursera.org/learn/basic-statistics/home/welcome) | Matthijs Rooduijn, Emiel van Loon | University of Amsterdam
+3. [Algorithms Part 1](https://www.coursera.org/learn/algorithms-part1/) | Kevin Wayne, Robert Sedgewick | Princeton University
 
 #### Academic English Writing
 1. [Grammar and Punctuation](https://www.coursera.org/learn/grammar-punctuation/home/welcome) | Tamy Chapman, Helen Nam | University of California, Irvine
