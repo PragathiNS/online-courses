@@ -1,0 +1,11 @@
+Material Components (MDC) help developers implement Material Design.
+
+In this codelab, you'll build a login page for Shrine that contains:
+1. Two text fields, one for entering a username and the other for a password
+2. Two buttons, one for "Cancel" and one for "Next"
+3. The name of the app (Shrine)
+4. An image of Shrine's logo
+
+MDC Android components in this codelab
+1. Text Field
+2. Button
