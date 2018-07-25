@@ -48,7 +48,10 @@ Courses that have taught me to improve my Computer Science knowledge
 ### ANT build
 https://www.tutorialspoint.com/ant/index.htm
 ### WebLogic Server
-https://docs.oracle.com/cd/E13222_01/wls/docs61/index.html
+1. https://docs.oracle.com/cd/E13222_01/wls/docs61/index.html <br />
+2. https://www.udemy.com/learn-oracle-weblogic-12c-essentials/learn/v4/overview<br />
+3. https://blogs.oracle.com/weblogicserver/weblogic-server-in-eclipse-ide-for-java-ee-developers (Reference) <br />
+4. https://way2java.com/servlets/servlet-war-file-weblogic-creation-deployment/ (Weblogic creation, deployment and execution steps) <br />
 ### Javadoc
 https://www.tutorialspoint.com/java/java_documentation.htm
 ### JUnit
