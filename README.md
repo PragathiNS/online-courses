@@ -43,3 +43,14 @@ Courses that have taught me to improve my Computer Science knowledge
 [Microsoft Professional Program for BIG DATA TRACK](https://academy.microsoft.com/en-us/tracks/big-data) | Microsoft
   1. [Introduction to Big Data](https://courses.edx.org/courses/course-v1:Microsoft+DAT229x+1T2018a/course/)
 
+
+# online-tutorials
+### ANT build
+https://www.tutorialspoint.com/ant/index.htm
+### WebLogic Server
+https://docs.oracle.com/cd/E13222_01/wls/docs61/index.html
+### Javadoc
+https://www.tutorialspoint.com/java/java_documentation.htm
+### JUnit
+https://junit.org/junit5/docs/current/user-guide/
+
