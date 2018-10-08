@@ -43,6 +43,8 @@ Courses that have taught me to improve my Computer Science knowledge
 [Microsoft Professional Program for BIG DATA TRACK](https://academy.microsoft.com/en-us/tracks/big-data) | Microsoft
   1. [Introduction to Big Data](https://courses.edx.org/courses/course-v1:Microsoft+DAT229x+1T2018a/course/)
 
+### PluralSight
+1. [Beginning Data Exploration and Analysis with Apache Spark](https://app.pluralsight.com/library/courses/apache-spark-beginning-data-exploration-analysis/table-of-contents)
 
 # online-tutorials
 ### ANT build
