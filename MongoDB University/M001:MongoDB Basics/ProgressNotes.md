@@ -1,5 +1,5 @@
 ### CHAPTER 1: INTRODUCTION
-+ **Lecture [Notes]()**
++ **Lecture [Notes](https://github.com/PragathiNS/online-courses/blob/master/MongoDB%20University/M001:MongoDB%20Basics/Chapter%201:%20Introduction/notes.md)**
   - Connecting to MongoDB using Compass
   - Exploring Datasets
   - Database, Collections and Documents
