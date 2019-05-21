@@ -33,3 +33,35 @@ security:
   keyFile: "/data/keyfile"
 processManagement:
   fork: true
+
+5. Which of the following files in the MongoDB data directory can you access to view collection data?
+-- The collection.wt file
+-- The storage.bson file
+-- The WiredTiger.wt file
+[x] None of the above
+
+6. Which of the following methods executes a database command?
+[x] db.runCommand({<COMMAND>})
+-- db.runThisCommand({<COMMAND>})
+-- db.executeCommand({<COMMAND>})
+-- db.command({<COMMAND>})
+
+7. Which of the following process logging components will capture the following operation, assuming a verbosity of 1 or greater?
+db.runCommand(
+  {
+    update : "products",
+    updates: [
+    {
+      q: <query>,
+      u: <update,
+    }
+    ]
+  }
+  )
+The insert operation generates both a WRITE and COMMAND log event. There is no UPDATE component, and the QUERY component captures events related to query planning.
+[x] WRITE
+-- QUERY
+-- UPDATE
+[x] COMMAND
+
+8.

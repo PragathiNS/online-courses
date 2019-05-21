@@ -99,3 +99,76 @@ MongoDB Configuration File
 		> mongod -f "/etc/mongod.conf"
 
 File structure
+
+
+Basic Commands:
+	Basic Helper groups
+	1. db.<method>() --> wrap Commands that interacts with the DB
+		 One additional extension -> db.<collection>.<method>() --> collection level operators
+	2. rs.<method>() --> wrap commands that control replica set deployment and management
+	3. sh.<method>() --> wrap commands to control sharded cluster deployment and management
+
+User management
+db.createUser()
+db.dropUser()
+
+Collection management
+db.renameCollection()
+db.collection.createIndex()
+db.collection.drop()
+
+Database management
+db.dropDatabase() --> deleted all collections, indexes, documents, users on the DB
+db.createCollection()
+
+Database status
+db.serverStatus()
+
+Database command Vs Shell Helper
+db.runCommand( { <COMMAND> } )
+db.commandHelp( "<command>" ) --> introspect a shell Helper
+db.runCommand(											
+	{
+		"createIndexes": "<collection>",
+		"indexes" : [
+		{
+			key: {"product": 1}
+		},
+		"name": "name_index"
+		]
+	}
+)
+
+db.<collection>.createIndex(
+	{"product": 1},
+	{"name": "name_index"}
+)
+
+Logging Basics:
+2 logging facilities for tracking activities on the Database
+Process log
+-> displays activities on the mondgoDB instances
+-> collects activities to one of the following Components [ use db.getLogComponents() in the mongo shell]
+
+
+Log Messages Severity levels:
+F	Fatal
+E	error
+W	Warning
+I Informational (verbosity level 0)
+D Debug (Verbosity level 1-5)
+
+Get the logging components:
+mongo admin --host 192.168.103.100:27000 -u m103-admin -p m103-pass --eval 'db.getLogComponents()'
+
+Change the logging level:
+mongo admin --host 192.168.103.100:27000 -u m103-admin -p m103-pass --eval 'db.setLogLevel(0, "index")'
+
+Tail the log file:
+tail -f /data/db/mongod.log
+
+Update a document:
+mongo admin --host 192.168.103.100:27000 -u m103-admin -p m103-pass --eval 'db.products.update( { "sku" : 6902667 }, { $set : { "salePrice" : 39.99} } )'
+
+Look for instructions in the log file with grep:
+grep -R 'update' /data/db/mongod.log
