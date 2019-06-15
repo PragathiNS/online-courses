@@ -1,7 +1,10 @@
 **Introduction**
 
 - MongoDB using Compass
-Compass: 
+Compass: MongoDB's GUI to connect to Database cluster, view databases, read and write date and it also supports MongoDB Query Language
+
+MongoDB Atlas - MongoDB's DAAS (Database as a Software)
+- create a database cluster in Atlas
 
 - Database, Collections and Documents
   - _Database_ -> Serves as Namespace for Collections
