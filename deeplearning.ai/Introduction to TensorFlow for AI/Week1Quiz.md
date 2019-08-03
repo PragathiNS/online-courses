@@ -27,16 +27,16 @@
 
 
 5. What does a Loss function do?
-    - [ ] Measures how good the current ‘guess’ is
+    - [x] Measures how good the current ‘guess’ is
     - [ ] Decides to stop training a neural network
-    - [x] Generates a guess
+    - [ ] Generates a guess
     - [ ] Figures out if you win or lose
 
 
 6. What does the optimizer do?
     - [ ] Figures out how to efficiently compile your code
-    - [x] Measures how good the current guess is
-    - [ ] Generates a new and improved guess
+    - [ ] Measures how good the current guess is
+    - [x] Generates a new and improved guess
     - [ ] Decides to stop training a neural network
 
 
