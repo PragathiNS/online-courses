@@ -11,7 +11,7 @@ def parse_file(datafile):
     with open(datafile, "r") as f:
         dd = csv.DictReader(f)
         for line in dd:
-#            print (line)
+            print (line)
             data.append(line)
     return data
 
