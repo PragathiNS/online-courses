@@ -1,0 +1,42 @@
+Finals:
+
+1. Connect to our class Atlas cluster from Compass and view the citibike.trips collection. Use the schema view and any filters you feel are necessary to determine the range of values for the usertype field. Which of the following are values found in this collection for the field usertype?
+
+{usertype: "Subscriber"} -> 1842667
+{usertype: "Customer"} -> 147606
+
+Total -> 1990273
+
+
+2.Connect to our class Atlas cluster from Compass and view the 100YWeatherSmall.data collection. Using the Schema view, explore the wind field. The wind field has the value type of document. Which of the following best describes the schema of this embedded document?
+
+Three fields -- two with the value type "document", one with the value type "string"
+
+3. Connect to the M001 class Atlas cluster from Compass and view the 100YWeatherSmall.data collection. What is the value type of the "wind.speed.rate" field?
+
+double
+
+4.Please connect to the M001 class Atlas cluster. You may answer this question using either the mongo shell or Compass.
+For this question we will use the citibike database.
+How many documents in the citibike.trips collection have the key tripduration set to null? Ignore any documents that do not contain the tripduration key.
+
+{$and: [{"tripduration": null}, {tripduration: {$exists: true}}]}
+
+5. Using the video.movieDetails collection, which of the queries below would produce output documents that resemble the following. Check all that apply.
+
+{ "title" : "P.S. I Love You" }
+{ "title" : "Love Actually" }
+{ "title" : "Shakespeare in Love" }
+NOTE: We are not asking you to consider specifically which documents would be output from the queries below, but rather what fields the output documents would contain.
+
+db.movieDetails.find({}, {title: 1, _id: 0})
+db.movieDetails.find({year: 1964}, {title: 1, _id: 0})
+
+6.Please connect to the M001 class Atlas cluster from the mongo shell or Compass and view the video.movies collection. How many movies match the following criteria?
+
+The cast includes either of the following actors: "Jack Nicholson", "John Huston".
+The viewerRating is greater than 7.
+The mpaaRating is "R".
+
+
+{$and: [{cast: {$in: ["Jack Nicholson", "John Huston"]}}, {viewerRating: {$gt: 7}}, {mpaaRating: "R"}]}

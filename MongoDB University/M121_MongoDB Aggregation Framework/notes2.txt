@@ -1,0 +1,231 @@
+cluster0-shard-00-00-olkll.mongodb.net:27017
+
+cluster0-shard-00-01-olkll.mongodb.net:27017
+
+cluster0-shard-00-02-olkll.mongodb.net:27017
+
+mongo "mongodb+srv://cluster0-olkll.mongodb.net/test" --username m001-student
+
+mongo "mongodb://cluster0-shard-00-00-olkll.mongodb.net:27017,cluster0-shard-00-01-olkll.mongodb.net:27017,cluster0-shard-00-02-olkll.mongodb.net:27017/test?replicaSet=Cluster0-shard-0" --authenticationDatabase admin --ssl --username m001-student --password m001-mongodb-basics
+MongoDB shell version v4.0.6
+
+
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> load("loadMovieDetailsDataset.js")
+true
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> show dbs
+admin  0.000GB
+local  3.330GB
+video  0.000GB
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> use video
+switched to db video
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> show dbs
+admin  0.000GB
+local  3.330GB
+video  0.000GB
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> use video
+switched to db video
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> show collections
+movieDetails
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find().pretty()
+{
+        "_id" : ObjectId("5cda523c8369060700f565b4"),
+        "title" : "Once Upon a Time in the West",
+        "year" : 1968,
+        "rated" : "PG-13",
+        "runtime" : 175,
+        "countries" : [
+                "Italy",
+                "USA",
+                "Spain"
+        ],
+        "genres" : [
+                "Western"
+        ],
+        "director" : "Sergio Leone",
+        "writers" : [
+                "Sergio Donati",
+                "Sergio Leone",
+				.
+				.
+				.
+}
+
+
+Mongo Compass
+insertOne()
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieScratch.insertOne({title:"Star Trek II: The Wrath of Khan", year:1982, imdb:"tt008472"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("5cda568e8369060700f56eab")
+}
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieScratch.insertOne({_id:"tt008472", title:"Star Trek II: The Wrath of Khan", year:1982, imdb:"tt008472"})
+{ "acknowledged" : true, "insertedId" : "tt008472" }
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+
+
+insertMany()
+
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> use video
+switched to db video
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieScratch.insertMany(
+...   [
+...     {
+...       "_id" : "tt0084726",
+...       "title" : "Star Trek II: The Wrath of Khan",
+...       "year" : 1982,
+...       "type" : "movie"
+...     },
+...     {
+...       "_id" : "tt0796366",
+...       "title" : "Star Trek",
+...       "year" : 2009,
+...       "type" : "movie"
+...     },
+...     {
+...       "_id" : "tt0084726",
+...       "title" : "Star Trek II: The Wrath of Khan",
+...       "year" : 1982,
+...       "type" : "movie"
+...     },
+...     {
+...       "_id" : "tt1408101",
+...       "title" : "Star Trek Into Darkness",
+...       "year" : 2013,
+...       "type" : "movie"
+...     },
+...     {
+...       "_id" : "tt0117731",
+...       "title" : "Star Trek: First Contact",
+...       "year" : 1996,
+...       "type" : "movie"
+...     }
+...   ],
+...   {
+...     ordered: false
+...   }
+... );
+2019-05-14T01:01:21.990-0500 E QUERY    [js] BulkWriteError: write error at item 2 in bulk operation :
+BulkWriteError({
+        "writeErrors" : [
+                {
+                        "index" : 2,
+                        "code" : 11000,
+                        "errmsg" : "E11000 duplicate key error collection: video.movieScratch index: _id_ dup key: { : \"tt0084726\" }",
+                        "op" : {
+                                "_id" : "tt0084726",
+                                "title" : "Star Trek II: The Wrath of Khan",
+                                "year" : 1982,
+                                "type" : "movie"
+                        }
+                }
+        ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 4,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+BulkWriteError@src/mongo/shell/bulk_api.js:369:48
+BulkWriteResult/this.toError@src/mongo/shell/bulk_api.js:333:24
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1173:1
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:314:5
+@(shell):1:1
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+
+READ Operations
+
+- quality filters
+{rated: "PG-13", year: 1999}
+command shell:
+db.movieDetails.find({rated:"PG-13", year: 1999}).pretty()
+
+- nested filters
+{"wind.direction.angle": 290}
+ommand shell:
+db.data.find({"wind.direction.angle": 290}).pretty()
+
+count()
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({"awards.wins": 2, "awards.nominations": 2}).count()
+12
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+Lab 2.3
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({rated: "PG", "awards.nominations": 10}).count()
+3
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({"writers.0": "Ethan Coen", "writers.1": "Joel Coen"}).count()
+1
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+Lab 2.4
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({genres: "Family"}).count()
+124
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+Lab 2.5
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({"genres.1": "Western"}).count()
+14
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+
+Cursors: 
+it -> iterator
+
+Projections: Second argument to the find method
+_id -> default return value
+can be explicitly removed by passing the value 0.
+use 1 to explicitly include
+
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({genres: "Action"}, {title: 1})
+{ "_id" : ObjectId("5cda523c8369060700f565b6"), "title" : "Wild Wild West" }
+{ "_id" : ObjectId("5cda523c8369060700f565b8"), "title" : "Slow West" }
+{ "_id" : ObjectId("5cda523c8369060700f565be"), "title" : "Star Wars: Episode IV - A New Hope" }
+{ "_id" : ObjectId("5cda523c8369060700f565bf"), "title" : "Star Wars: Episode V - The Empire Strikes Back" }
+{ "_id" : ObjectId("5cda523c8369060700f565c0"), "title" : "Star Wars: Episode VI - Return of the Jedi" }
+{ "_id" : ObjectId("5cda523c8369060700f565c1"), "title" : "Star Wars: Episode I - The Phantom Menace" }
+{ "_id" : ObjectId("5cda523c8369060700f565c2"), "title" : "Star Wars: Episode III - Revenge of the Sith" }
+{ "_id" : ObjectId("5cda523c8369060700f565c3"), "title" : "Star Trek" }
+{ "_id" : ObjectId("5cda523c8369060700f565c4"), "title" : "Star Wars: Episode II - Attack of the Clones" }
+{ "_id" : ObjectId("5cda523c8369060700f565c5"), "title" : "Star Trek Into Darkness" }
+{ "_id" : ObjectId("5cda523c8369060700f565c6"), "title" : "Star Trek: First Contact" }
+{ "_id" : ObjectId("5cda523c8369060700f565c7"), "title" : "Star Trek II: The Wrath of Khan" }
+{ "_id" : ObjectId("5cda523c8369060700f565cf"), "title" : "From Paris with Love" }
+{ "_id" : ObjectId("5cda523c8369060700f565d0"), "title" : "From Russia with Love" }
+{ "_id" : ObjectId("5cda523c8369060700f565d4"), "title" : "Zathura: A Space Adventure" }
+{ "_id" : ObjectId("5cda523c8369060700f565d5"), "title" : "Space Cowboys" }
+{ "_id" : ObjectId("5cda523c8369060700f565d6"), "title" : "Lost in Space" }
+{ "_id" : ObjectId("5cda523c8369060700f565d9"), "title" : "Turks in Space" }
+{ "_id" : ObjectId("5cda523c8369060700f565dc"), "title" : "The Adventures of Tintin" }
+{ "_id" : ObjectId("5cda523c8369060700f565de"), "title" : "The Adventures of Robin Hood" }
+Type "it" for more
+MongoDB Enterprise Cluster0-shard-0:PRIMARY> db.movieDetails.find({genres: "Action"}, {title: 1, _id: 0})
+{ "title" : "Wild Wild West" }
+{ "title" : "Slow West" }
+{ "title" : "Star Wars: Episode IV - A New Hope" }
+{ "title" : "Star Wars: Episode V - The Empire Strikes Back" }
+{ "title" : "Star Wars: Episode VI - Return of the Jedi" }
+{ "title" : "Star Wars: Episode I - The Phantom Menace" }
+{ "title" : "Star Wars: Episode III - Revenge of the Sith" }
+{ "title" : "Star Trek" }
+{ "title" : "Star Wars: Episode II - Attack of the Clones" }
+{ "title" : "Star Trek Into Darkness" }
+{ "title" : "Star Trek: First Contact" }
+{ "title" : "Star Trek II: The Wrath of Khan" }
+{ "title" : "From Paris with Love" }
+{ "title" : "From Russia with Love" }
+{ "title" : "Zathura: A Space Adventure" }
+{ "title" : "Space Cowboys" }
+{ "title" : "Lost in Space" }
+{ "title" : "Turks in Space" }
+{ "title" : "The Adventures of Tintin" }
+{ "title" : "The Adventures of Robin Hood" }
+Type "it" for more
+MongoDB Enterprise Cluster0-shard-0:PRIMARY>
+
+Update:
+

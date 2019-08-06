@@ -1,0 +1,104 @@
+# Cursor methods and Aggregation equivalents:
+
+# 1. LIMITING
+
+# Cursor:
+limited_cursor = movies.find(
+# query predicate
+	{ "directors": "Sam Raimi" },
+	# field projections
+	{ "_id": 0, "title": 1, "cast": 1}
+	).limit(2)
+
+print(dumps(limited_cursor, indent=2))
+
+# Aggregation:
+pipeline = [
+	{"$match": {"directors": "Sam Raimi"}},
+	{"$project": {"_id": 0, "title": 1, "cast": 1}},
+	{"$limit": 2}
+]
+
+limited_aggregation = movies.aggregate(pipeline)
+
+print(dumps(limited_aggregation, indent=2))
+
+# 2. SORTING
+
+# Cursor:
+sorted_cursor = movies.find(
+# query predicate
+	{ "cast": "Tom Hanks" },
+	# field projections
+	{ "_id": 0, "year": 1, "title": 1, "cast": 1}
+	).sort([("year", ASCENDING), ("title": ASCENDING)])
+	
+print(dumps(sorted_cursor indent=2))
+
+# Aggregation:
+pipeline = [
+	{"$match": {"cast": "Tom Hanks"}},
+	{"$project": {"_id": 0, "year": 1, "title": 1, "cast": 1}}
+	{"sort": {"year", ASCENDING, "title": ASCENDING}}
+]
+
+sorted_aggregation = movies.aggregate(pipeline)
+
+print(dumps(sorted_aggregation, indent=2))
+
+# 3. SKIPPING (Skipping through the documents)
+
+# count is deprecated in cursor methods
+# Aggregation - COUNT
+pipeline = [
+	{"$match": { "directors": "Sam Raimi"}},
+	{"$project": {"_id": 0, "title": 1, "cast": 1}},
+	{"$count": "num_movies"}
+]
+
+sorted_aggregation = movies.aggregate(pipeline)
+
+print (dumps(sorted_aggregation, indent=2))
+
+Result -->
+[
+	{
+		"num_movies": 15
+	}
+]
+
+# Cursor:
+
+# Skips the 14 documents and returns the one document (no ordering)
+skipped_cursor = movies.find(
+	{"directors": "Sam Raini"},
+	{"_id": 0, "title": 1, "cast": 1}
+).skip(14)
+
+print(dumps(skipped_cursor, indent=2))
+
+# with ordering
+skipped_sorted__cursor = movies.find(
+	{"directors": "Sam Raini"},
+	{"_id": 0, "title": 1, "year": 1, "cast": 1}
+).sort("year", ASCENDING).skip(10)
+
+print(dumps(skipped_sorted_cursor, indent=2))
+
+# Aggregation
+pipeline = [
+	{"$match": { "directors": "Sam Raimi"}},
+	{"$project": {"_id": 0, "year": 1, "title": 1, "cast": 1}},
+	{"$sort": {"year", ASCENDING},
+	{"$skip": 10}
+]
+
+sorted_skipped_aggregation = movies.aggregate(pipeline)
+
+print(dumps(sorted_skipped_aggregation, indent=2))
+
+# SUMMARY
+
+# .limit() == $limit
+# .sort() == $sort
+# .skip() == $skip

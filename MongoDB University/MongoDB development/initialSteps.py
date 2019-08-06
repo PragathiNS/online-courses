@@ -8,7 +8,7 @@ collection = client.test.restaurant
 # 2. INSERT A DOCUMENT:
 new_documents = [
   {
-    "name": "Sun Bakery Trattoria",
+	"name": "Sun Bakery Trattoria",
     "stars": 4,
     "categories": ["Pizza","Pasta","Italian","Coffee","Sandwiches"]
   }, {
@@ -33,6 +33,22 @@ new_documents = [
 collection.insert_many(new_documents)
 
 # 3. QUERY 
+
+# Get all the documents in the restaurant collection and store them as an array
 for restaurant in collection.find():
 	pprint.pprint(restaurant)
   
+# 4. CREATE INDEX
+
+# we are building an index on the name field with sort order ascending.
+collection.create_index([('name', pymongo.ASCENDING)])
+
+# 5. AGGREGATE
+
+# we pull all the documents in the restaurants collection that have a category of Bakery using the $match operator and then group them by their star rating using the $group operator. Using the accumulator operator, $sum, we can see how many bakeries in our collection have each star rating.
+pipeline = [
+  {"$match": {"categories": "Bakery"}},
+  {"$group": {"_id": "$stars", "count": {"$sum": 1}}}
+]
+
+pprint.pprint(list(collection.aggregate(pipeline)))
